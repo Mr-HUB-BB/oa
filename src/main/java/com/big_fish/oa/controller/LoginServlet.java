@@ -42,9 +42,13 @@ public class LoginServlet extends HttpServlet {
         //调用业务逻辑，对账号密码进行校验
         try {
             User user = userService.checkLogin(username, password);
+            HttpSession session = request.getSession();
+            //向session存入登录用户信息，属性名login_user
+            session.setAttribute("login_user",user);
             //校验成功
             result.put("code","0");
             result.put("message","success");
+            result.put("redirect_url","/index");
         } catch (BussinessException e) { //账号、密码错误
            logger.error(e.getMessage(),e);
             result.put("code",e.getCode());

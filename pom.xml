@@ -7,42 +7,88 @@
     <groupId>org.big_fish</groupId>
     <artifactId>oa</artifactId>
     <version>1.0-SNAPSHOT</version>
+<!--
+使用阿里云maven仓库
+    <repositories>
+        <repository>
+            <id>ailiyun</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+    </repositories>
+-->
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
-        <!--MyBatis框架-->
+        <!--MyBatis-->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.5.9</version>
         </dependency>
-        <!--JDBC驱动-->
+        <!--MySQL驱动程序-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
         </dependency>
-        <!--Druid数据库连接池-->
+        <!--druid连接池-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.2.8</version>
         </dependency>
-        <!--Junit测试单元-->
+        <!--Junit-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
+            <scope>test</scope>
         </dependency>
-        <!--logBack日志管理-->
+        <!--logback-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.3.0-alpha12</version>
         </dependency>
+        <!--freeMarker-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.31</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <!--依赖只参与测试-->
+            <scope>provided</scope>
+        </dependency>
+        <!--fastJson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.79</version>
+        </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <!--利用Maven编译器插件将编译级别提高到1.8，解决lambda表达式错误-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <!--Maven自带编译-->
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <!--检查源码采用1.8规则，默认为1.5-->
+                    <source>1.8</source>
+                    <!--按1.8生成字节码-->
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

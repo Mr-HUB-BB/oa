@@ -1,6 +1,9 @@
 package com.big_fish.oa.service;
 
+import com.big_fish.oa.entity.Node;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -47,5 +50,14 @@ public class UserServiceTest {
     @Test
     public void checkLogin3() {
         userService.checkLogin("m8","test");
+    }
+
+    @Test
+    public void test(){
+        List<Node> list = userService.selectNodeById(5l);
+        for (Node n :
+                list) {
+            System.out.println(n.getNodeName());
+        }
     }
 }
